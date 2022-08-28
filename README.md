@@ -11,3 +11,9 @@ To use it you need to export the deck you want to compare from https://www.mtgto
 ## MTG formats available for the moment:
   - Commander
   - Duel Commander
+
+## Install & run
+git clone https://github.com/Phenixjj/mtg_top8_deck_collection_compararator.git
+cd mtg_top8_deck_collection_compararator
+pip install -r Requirements.txt
+python deck.py

@@ -1,12 +1,18 @@
+"""
+Magic the Gatherind deck collection comparator
+"""
 import argparse
-
 import csv
-from tkinter.ttk import Separator
 
 
-def deck_comparator(mtgDeck, collection):
-    # print(mtgDeck, collection)
-    # print('coucou')
+def deck_comparator(mtg_deck, collection):
+    """
+    Deck comarator fonction
+
+    Args:
+        mtgDeck (.txt): path of the deck
+        collection (.csv): path of your csv collection name file
+    """
     full_cards_collection = open(collection, 'r')
     cards_name_collection = []
     cards_name_top8 = []
@@ -26,22 +32,21 @@ def deck_comparator(mtgDeck, collection):
             personal_card.append(card)
         elif card not in cards_name_collection:
             missed_cards.append(card)
-    
-    print("*** YOU HAVE " + str(len(personal_card)) + " % OF " + str((mtgDeck).split('.')[0]).upper() + " DECK ***\n")
-    print('================================================================================================')
+    print("*** YOU HAVE " + str(len(personal_card)) + " % OF "\
+         + str((mtg_deck).split('.')[0]).upper() + " DECK ***\n")
+    print('=====================================================')
     print("CARDS IN YOUR POSSESSION : \n")
     print(personal_card)
-    print('================================================================================================')
+    print('=====================================================')
     print("MISSED CARDS : \n")
     print(missed_cards)
 
 
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--top8', default="")
-    parser.add_argument('--collection', default="collection.csv")
+    parser.add_argument('--top8', default="example/raffine.txt")
+    parser.add_argument('--collection', default="example/data/collection2.csv")
     args = parser.parse_args()
     deckTop8 = args.top8
-    collection = args.collection
-    deck_comparator(deckTop8, collection)
+    owner_cards = args.collection
+    deck_comparator(deckTop8, owner_cards)
