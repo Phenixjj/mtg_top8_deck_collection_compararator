@@ -1,0 +1,1 @@
+# mtg_top8_deck_collection_compararator
