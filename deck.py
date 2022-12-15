@@ -7,7 +7,7 @@ import csv
 
 def deck_comparator(mtg_deck, collection):
     """
-    Deck comarator fonction
+    Deck comparator fonction
 
     Args:
         mtgDeck (.txt): path of the deck
