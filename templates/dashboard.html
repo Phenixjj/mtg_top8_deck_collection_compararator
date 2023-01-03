@@ -8,6 +8,15 @@
 </head>
 <body>
     <h1>Hello you are login</h1>
+
+    <form method="POST" action="/response">
+        Name: <input type="text" name="card_name" required><br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if name %}
+    <h1>Card name : {{name}} </h1>
+    <img src= "{{card_image_large}}" alt="">
+    {% endif %}
     <a href="{{url_for('logout')}}">Press here to logout</a>
     
 </body>

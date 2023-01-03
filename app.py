@@ -1,14 +1,17 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy # version 2.5
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, EmailField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
+from card import Card
 import pdb
 import firebase_admin
 from firebase_admin import auth
 import os
+import scrython
+import time
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/jeanlecigne/code/project/BOOK/MTG-TOP8-COMPARATOR/key/mtg-app-eaeb6-firebase-adminsdk-h1f61-abef420e66.json'
 firebase_admin.initialize_app(options={
@@ -86,6 +89,18 @@ def dashboard():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route('/response', methods=['POST'])
+def response():
+    card_name = request.form.get("card_name")
+    card = Card(card_name)
+    try:
+        pdb.set_trace()
+        card_image_large = Card.get_img(card.name)
+    except:
+        card_name = "no card found"
+        card_image_large = "no img"
+    return render_template("dashboard.html", name=card_name, image=card_image_large)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
